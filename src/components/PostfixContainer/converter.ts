@@ -55,6 +55,8 @@ export function InfixtoPostfix(expression:string) {
 	// Postfix array created
 	var postfix = [];
 	var temp = 0;
+  var alphabet:string[] = [];
+  var count = 0;
 	push('@');
   var previous = '';
   var next = '';
@@ -84,6 +86,7 @@ export function InfixtoPostfix(expression:string) {
 
         
         concat = element + next
+        alphabet[count++] = concat;
         if(aux != '') push(dot);
         if(!operator(expression[i+2])) push(dot);          
 
@@ -111,10 +114,12 @@ export function InfixtoPostfix(expression:string) {
       console.log("entrou no else")
       if (i>0){
         previous = expression[i-1];
-        if(!operator(previous)){
+        if(!operator(previous) || aux != ''){
           push(dot);
+          aux = '';
         }
       }
+      alphabet[count++] = element ;
 			postfix[temp++] = element;
 		}
 	}
@@ -129,5 +134,5 @@ export function InfixtoPostfix(expression:string) {
 	for (var i = 0; i < postfix.length  ; i++)
 		st += postfix[i];
 
-	return st;
+	return {st, alphabet};
 }

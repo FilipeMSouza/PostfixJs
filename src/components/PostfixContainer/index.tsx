@@ -7,10 +7,12 @@ interface PosixContainerProps{
 
 export default function PosfixContainer({expression}:PosixContainerProps){
 
+  var teste = InfixtoPostfix(expression)
+  console.log(teste)
   return(
     <Main>
       <p>
-        Posfix form: {InfixtoPostfix(expression)}
+        Posfix form: {teste.st}
       </p>
     </Main>
   )
