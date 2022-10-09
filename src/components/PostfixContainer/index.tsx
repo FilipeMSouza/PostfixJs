@@ -3,16 +3,19 @@ import { InfixtoPostfix } from "./converter";
 
 interface PosixContainerProps{ 
   expression: string;
+  alphabetHandler: string[];
 }
 
-export default function PosfixContainer({expression}:PosixContainerProps){
+export default function PosfixContainer({expression, alphabetHandler}:PosixContainerProps){
 
-  var teste = InfixtoPostfix(expression)
-  console.log(teste)
+  var postfixResult = InfixtoPostfix(expression)
+  for (var i = 0; i < postfixResult.alphabet.length; i++){
+    alphabetHandler[i] = postfixResult.alphabet[i]
+  }
   return(
     <Main>
       <p>
-        Posfix form: {teste.st}
+        Posfix form: {postfixResult.st}
       </p>
     </Main>
   )

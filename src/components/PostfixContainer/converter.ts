@@ -63,6 +63,7 @@ export function InfixtoPostfix(expression:string) {
   var concat = '';
   var aux= '';
   var dot = '.';
+
 	// Iterate on infix string
 	for (var i = 0; i < expression.length; i++) {
 		var element = expression[i];
@@ -111,7 +112,6 @@ export function InfixtoPostfix(expression:string) {
 			}
 		}
 		else {
-      console.log("entrou no else")
       if (i>0){
         previous = expression[i-1];
         if(!operator(previous) || aux != ''){
