@@ -9,14 +9,13 @@ import { States } from "../components/states/idex";
 
 export default function Home(){
   const [expression, setExpression] = useState<string>('');
-  var alphabet:string[] = [];
   return (
     <>
       <Main>
         <InputContent expression={expression} setExpression={setExpression}/>
         <Result>
           <InfixContainer expression={expression}/>
-          <PosfixContainer expression={expression} alphabetHandler={alphabet}/>
+          <PosfixContainer expression={expression}/>
         </Result>
         <States/>
         <InfoContainer/>

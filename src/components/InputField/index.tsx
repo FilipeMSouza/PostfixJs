@@ -16,7 +16,8 @@ export default function InputContent({expression, setExpression}:InputContentPro
     <Main>
       <Form>
         <TextField
-          placeholder="insert here your expression but between ()"
+          placeholder="insert here your expression"
+          defaultValue={expression}
           onChange={(e)=>{
             teste = e.target.value;
           }}

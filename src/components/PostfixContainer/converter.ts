@@ -26,8 +26,8 @@ function pop() {
 // character is operator or not
 function operator(op:string) {
 	if (op == '+' || op == '*' ||
-      op == '.' || op =='\\' ||
-      op == '(' || op == ')' ){
+      op == '.' || op == '(' || 
+      op == ')' ){
 		return true;
 	}
 	else
@@ -49,30 +49,42 @@ function precedency(char:string) {
 		return 0;
 }
 
+function stringify(str:string){
+  var treatedString:string[] = []
+  var temp=0
+  for(var i = 0; i < str.length; i++){
+    if(str[i]== '\\'){
+      treatedString[temp] = str[i]+str[i+1];
+      temp++
+      i += 1;
+      continue
+    }
+    treatedString[temp] = str[i];
+    temp++
+  }
+  return treatedString
+}
+
+
 // Function to convert Infix to Postfix
 export function InfixtoPostfix(expression:string) {
 
 	// Postfix array created
 	var postfix = [];
 	var temp = 0;
-  var alphabet:string[] = [];
-  var count = 0;
+  var ret:string[]= []
 	push('@');
   var previous = '';
-  var next = '';
-  var concat = '';
-  var aux= '';
   var dot = '.';
+  ret = stringify(expression)
 
-	// Iterate on infix string
-	for (var i = 0; i < expression.length; i++) {
-		var element = expression[i];
-    next = expression[i+1];
-    
-		// Checking whether operator or not
-		if (operator(element)) {
-      if (element == ')') {
-        while (stackarr[topp] != "(") {
+	  //Iterate on infix string
+    for (var i = 0; i < ret.length; i++) {
+      var element = ret[i];
+      // Checking whether operator or not
+      if (operator(element)) {
+        if (element == ')') {
+          while (stackarr[topp] != "(") {
           postfix[temp++] = pop();
 				}
 				pop();
@@ -83,30 +95,13 @@ export function InfixtoPostfix(expression:string) {
         push(element);
 			}
       
-      else if(element =='\\'){
-
-        
-        concat = element + next
-        alphabet[count++] = concat;
-        if(aux != '') push(dot);
-        if(!operator(expression[i+2])) push(dot);          
-
-        aux = concat
-        postfix[temp++] = concat;
-        concat = ''
-        
-        i++;
-      }
-
-			// Comparing precedency of element and
-			// stackarr[topp]
 			else if (precedency(element) > precedency(stackarr[topp])) {
-				push(element);
+        push(element);
 			}
 			else {
-				while (precedency(element) <=
-					precedency(stackarr[topp]) && topp > -1) {
-					postfix[temp++] = pop();
+        while (precedency(element) <=
+        precedency(stackarr[topp]) && topp > -1) {
+          postfix[temp++] = pop();
 				}
 				push(element);
 			}
@@ -114,25 +109,24 @@ export function InfixtoPostfix(expression:string) {
 		else {
       if (i>0){
         previous = expression[i-1];
-        if(!operator(previous) || aux != ''){
+        if(!operator(previous)){
           push(dot);
-          aux = '';
         }
       }
-      alphabet[count++] = element ;
-			postfix[temp++] = element;
+      postfix[temp++] = element;
 		}
 	}
-
+  
 	// Adding character until stackarr[topp] is @
 	while (stackarr[topp] != '@') {
-		postfix[temp++] = pop();
+    postfix[temp++] = pop();
 	}
 
 	// String to store postfix expression
 	var st = "";
 	for (var i = 0; i < postfix.length  ; i++)
-		st += postfix[i];
+    st += postfix[i];
 
-	return {st, alphabet};
+  console.log('here', st);
+	return {st};
 }
