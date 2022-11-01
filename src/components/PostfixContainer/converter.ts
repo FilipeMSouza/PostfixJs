@@ -96,6 +96,7 @@ export function InfixtoPostfix(expression:string) {
 			}
       
 			else if (precedency(element) > precedency(stackarr[topp])) {
+        if(element == '*') push(dot);
         push(element);
 			}
 			else {

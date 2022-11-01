@@ -11,5 +11,5 @@ export function base(symbol:string){
   automaton.createState(q0);
   automaton.createState(qf);
 
-  automaton.createTrasition(symbol, q0, qf);
+  automaton.createTransition(q0, qf, symbol);
 }

@@ -27,7 +27,7 @@ export class Automaton{
     this.state.push(state);
   }
 
-  public createTrasition(symbol:string, fromState:State, toState:State){
+  public createTransition(fromState:State, toState:State, symbol:string){
     this.transition.push(new Transition(symbol, fromState, toState));
   }
 
