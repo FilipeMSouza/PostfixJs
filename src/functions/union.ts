@@ -101,5 +101,5 @@ export function union(A: Automaton, B: Automaton){
     automaton.createTransition(final_A, NewFinalState, 'ε');
     automaton.createTransition(final_B, NewFinalState, 'ε');
 
-
+    return automaton;
 }

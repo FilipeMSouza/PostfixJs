@@ -1,12 +1,11 @@
 import { State } from "./state";
 import { Transition } from "./transition";
 
-export class Automaton{
-  
-
-  
-  constructor(public initialState: State,
-  public finalState: State[]){
+export class Automaton {
+  constructor(
+    public initialState: State,
+    public finalState: State[]
+  ) {
     this.initialState = initialState;
     this.finalState = finalState;
 
@@ -17,13 +16,13 @@ export class Automaton{
 
 
 
-  
-  public setAlphabet(str:string){
-    if(!this.alphabet.includes(str))
-    this.alphabet.push(str);
+
+  public setAlphabet(str: string) {
+    if (!this.alphabet.includes(str))
+      this.alphabet.push(str);
   }
 
-  public createState(state:State){
+  public createState(state: State) {
     this.state.push(state);
   }
 

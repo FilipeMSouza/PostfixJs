@@ -14,7 +14,7 @@ function push(e:any) {
 // Pop function for returning top element
 function pop() {
 	if (topp == -1)
-		return 0;
+		return '';
 	else {
 		var popped_ele = stackarr[topp];
 		topp--;
@@ -70,7 +70,7 @@ function stringify(str:string){
 export function InfixtoPostfix(expression:string) {
 
 	// Postfix array created
-	var postfix = [];
+	var postfix: string[] = [];
 	var temp = 0;
   var ret:string[]= []
 	push('@');
@@ -96,7 +96,10 @@ export function InfixtoPostfix(expression:string) {
 			}
       
 			else if (precedency(element) > precedency(stackarr[topp])) {
-        if(element == '*') push(dot);
+        if(element == '*'){
+          postfix[temp++] = '*';
+          push(dot);
+        } else
         push(element);
 			}
 			else {
@@ -110,10 +113,12 @@ export function InfixtoPostfix(expression:string) {
 		else {
       if (i>0){
         previous = expression[i-1];
+        postfix[temp++] = element;
         if(!operator(previous)){
-          push(dot);
+          postfix[temp++] = dot;
         }
       }
+      else
       postfix[temp++] = element;
 		}
 	}
@@ -127,7 +132,5 @@ export function InfixtoPostfix(expression:string) {
 	var st = "";
 	for (var i = 0; i < postfix.length  ; i++)
     st += postfix[i];
-
-  console.log('here', st);
-	return {st};
+	return {st, postfix};
 }

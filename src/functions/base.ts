@@ -2,6 +2,7 @@ import {State} from '../utils/state'
 import {Automaton} from '../utils/automaton'
 
 export function base(symbol:string){
+
   var q0 = new State(0, true, false);
   var qf = new State(1, false, true);
 
@@ -12,4 +13,6 @@ export function base(symbol:string){
   automaton.createState(qf);
 
   automaton.createTransition(q0, qf, symbol);
+
+  return automaton;
 }

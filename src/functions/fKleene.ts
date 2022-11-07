@@ -21,6 +21,7 @@ export function FKleene(automaton: Automaton){
   automaton.createTransition(newInital, newFinal, '&');
   automaton.createTransition(oldFinal, oldInitial, '&');
   automaton.createTransition(oldFinal, newFinal, '&');
+  console.log(automaton)
   
   return automaton;
 }

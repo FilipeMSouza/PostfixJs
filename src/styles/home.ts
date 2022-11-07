@@ -1,9 +1,6 @@
 import styled from 'styled-components'
 
 export const Main = styled.div`
-  background: #242426;
-
-  border-radius: 25px 0 0 0;
 `
 
 export const Result = styled.div`
